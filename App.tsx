@@ -1,29 +1,25 @@
 import { StatusBar } from "react-native";
-import { Text, View } from "react-native";
+import { NativeBaseProvider } from "native-base";
+import { Loading } from "@components/Loading";
+import { THEME } from "./src/theme/index";
 import {
   useFonts,
   Roboto_400Regular,
   Roboto_700Bold,
 } from "@expo-google-fonts/roboto";
+import { SingUp } from "@screens/SingUp";
 
 export default function App() {
   const [fontsLoaded] = useFonts({ Roboto_400Regular, Roboto_700Bold });
 
   return (
-    <View
-      style={{
-        flex: 1,
-        alignItems: "center",
-        justifyContent: "center",
-        backgroundColor: "#202024",
-      }}
-    >
+    <NativeBaseProvider theme={THEME}>
       <StatusBar
         barStyle="light-content"
         backgroundColor="transparent"
         translucent
       />
-      {fontsLoaded ? <Text>Hello World</Text> : <View />}
-    </View>
+      {fontsLoaded ? <SingUp /> : <Loading />}
+    </NativeBaseProvider>
   );
 }
